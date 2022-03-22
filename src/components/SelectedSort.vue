@@ -5,12 +5,10 @@
           :items="options"
           item-text="text"
           item-value="value"
-          @change="optionChange"
       >
-
       </v-select>
       <div v-for="item in data" :key="item.id">
-        {{item.name}}
+        {{item.name + ' ' + item.username}}
       </div>
 
   </div>
@@ -18,7 +16,7 @@
 
 <script>
 export default {
-  name: "SelectedSort.vue",
+  name: "SelectedSort",
   props: {
     data: {
       type: Array,
@@ -30,16 +28,17 @@ export default {
     },
     select: [String]
   },
-  data: () => ({
-    selectedOption: this.select
-  }),
-  methods: {
-    optionChange(){
-      console.log(this.selectedOption)
-      this.$emit('update:select',this.selectedOption)
+  computed: {
+    selectedOption: {
+      get() {
+        return this.select
+      },
+      set(value) {
+        this.$emit('update:select',value)
+      }
     }
+  },
 
-  }
 }
 </script>
 

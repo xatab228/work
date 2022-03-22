@@ -3,7 +3,7 @@
    <p>Place for KALLLLLLLLLLLLL</p>
     <div>
       <custom-text-area-with-draggable-chip/>
-      <selected-sort :data="data" :options="options" :select.sync="selectOption"/>
+      <selected-sort :data="sortedData" :options="options" :select.sync="selectOption"/>
       {{selectOption}}
     </div>
  </div>
@@ -19,8 +19,8 @@ export default {
   data: () => ({
     data: [],
     options: [
-      { value: "title", text: "Name" },
-      { value: "body", text: "Content" },
+      { value: "name", text: "Name" },
+      { value: "username", text: "username" },
     ],
     selectOption: '',
   }),
@@ -33,6 +33,14 @@ export default {
         console.log(e)
       }
     }
+  },
+  computed: {
+    sortedData() {
+      return [...this.data].sort((first_item, second_item) =>
+          first_item[this.selectOption]?.localeCompare(second_item[this.selectOption])
+      );
+    },
+
   },
   created() {
     this.fetchData()
