@@ -5,9 +5,19 @@
       color="primary"
       dark
     >
-      <v-btn @click="$router.push('/')"></v-btn>
+      <v-btn @click="$router.push('/')" color="blue" icon text large>
+        <v-icon>
+          mdi-vuetify
+        </v-icon>
+      </v-btn>
+      <v-spacer/>
+      <v-btn @click="$router.push('/test')" color="black" icon text large>
+        <v-icon>
+          mdi-wrench
+        </v-icon>
+      </v-btn>
     </v-app-bar>
-    <v-main>
+    <v-main class="app-main">
       <router-view/>
     </v-main>
   </v-app>
@@ -23,3 +33,8 @@ export default {
   }),
 };
 </script>
+
+<style>
+.app-main {
+}
+</style>

@@ -1,17 +1,20 @@
 <template>
-  <div class="main-view">
-    <p> Hello Uebak!</p>
-  </div>
+ <div class="tests-places">
+   <p>Place for KALLLLLLLLLLLLL</p>
+
+
+
+ </div>
 </template>
 
 <script>
 export default {
-  name: "MainView"
+  name: "TestsPlaces"
 }
 </script>
 
 <style scoped>
-.main-view {
+.tests-places {
   display: grid;
   justify-items: center;
 }

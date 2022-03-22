@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainView from '@/views/MainView.vue'
+import TestsPlaces from "@/views/TestsPlaces";
 
 Vue.use(VueRouter)
 
@@ -9,6 +10,11 @@ const routes = [
     path: '/',
     name: 'main',
     component: MainView
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: TestsPlaces
   },
 
 ]
