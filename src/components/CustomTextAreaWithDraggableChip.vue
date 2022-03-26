@@ -2,10 +2,10 @@
 	<div class="custom-textarea-with-checkbox">
 		<div class="custom-textarea-with-chips">
 			<draggable
-				v-model="visibleSelected"
+				v-model="selectCheckbox"
 			>
 				<v-chip
-					v-for="(user,index) in visibleSelected"
+					v-for="(user,index) in selectCheckbox"
 					:key="index"
 					class="ml-2 mt-2"
 					close
@@ -15,25 +15,17 @@
 				</v-chip>
 			</draggable>
 			<v-text-field
+				v-model="searchUser"
 				dense
 				outlined
 				append-icon="mdi-menu-down"
 				@click:append="openCheckbox"
 			>
 			</v-text-field>
-<!--			<v-combobox-->
-<!--				:items="users"-->
-<!--				:value="selectCheckbox"-->
-<!--				item-text="name"-->
-<!--				class="custom-combobox"-->
-<!--				multiple-->
-<!--				outlined-->
-<!--				dense-->
-<!--			></v-combobox>-->
 		</div>
 		<div class="custom-checkbox" v-show="visibleCheckbox">
 			<v-checkbox
-				v-model="visibleSelected"
+				v-model="selectCheckbox"
 				v-for="(user,index) in users"
 				:key="index"
 				:label="user.name"
@@ -61,23 +53,13 @@ export default {
 		}
 	},
 	computed: {
-		users: {
-			get() {
-				return this.usersArr
-			},
-			set(values) {
-				console.log(values)
-				this.$emit('change', values)
-			}
+		users() {
+			return [...this.usersArr].sort((a,b)=> a['name']?.localeCompare(b['name'])).filter((user) => user.name.toLowerCase().includes(this.searchUser.toLowerCase()));
 		},
-		visibleBox(){
-			console.log(this.visibleSelected)
-			return this.visibleSelected.map((item) => item.length === 1 ? 'true' : 'false')
-		}
 	},
 	methods: {
 		deleteUser(index) {
-			this.usersArr.splice(index, 1)
+			this.selectCheckbox.splice(index, 1)
 		},
 		openCheckbox(){
 			this.visibleCheckbox = !this.visibleCheckbox
@@ -89,7 +71,7 @@ export default {
 				this.usersArr = values
 			}
 		},
-		visibleSelected: {
+		selectCheckbox: {
 			handler(values) {
 				console.log(values)
 				
@@ -100,8 +82,8 @@ export default {
 	data: () => ({
 		usersArr: [],
 		visibleCheckbox: false,
-		visibleSelected: [],
-		selectCheckbox:[]
+		selectCheckbox:[],
+		searchUser: ''
 	}),
 }
 </script>
@@ -111,11 +93,7 @@ export default {
 .custom-textarea-with-checkbox {
 	max-width: 50%;
 }
-.custom-combobox{
-	.v-select__selection{
-		visibility: hidden;
-	}
-}
+
 .custom-checkbox {
 	z-index: 3;
 	box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
