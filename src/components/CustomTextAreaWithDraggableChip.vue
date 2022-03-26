@@ -92,56 +92,54 @@ export default {
 
 .custom-textarea-with-checkbox {
 	max-width: 50%;
-}
-
-.custom-checkbox {
-	z-index: 3;
-	box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
-}
-.solo-checkbox {
-	//border: 0.5px solid black;
-	margin-bottom: 6px;
-	margin-top: 6px;
-	padding: 0 16px;
-	min-height: 40px;
 	
-	
-	.v-messages {
-		display:none
-	}
-	.v-input__control {
-		padding-top: 6px;
-	}
-}
-
-.custom-textarea-with-chips {
-	display: flex;
-	flex-direction: column;
-	border: 1px solid black;
-	
-	.v-text-field--outlined fieldset {
-		//border: 1px solid cyan;
-		border: 0;
-	}
-	
-	.v-text-field--outlined.v-input--is-focused fieldset {
-		//border: 1px solid cyan;
-		border: 0;
-	}
-	
-	.v-input__slot {
-		margin-bottom: 0;
+	.custom-textarea-with-chips {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid black;
 		
-		input {
-			padding: 0;
-			height: 100%;
-			max-height: unset;
+		.v-text-field--outlined fieldset {
+			//border: 1px solid cyan;
+			border: 0;
+		}
+		.v-text-field--outlined.v-input--is-focused fieldset {
+			//border: 1px solid cyan;
+			border: 0;
+		}
+		.v-input__slot {
+			margin-bottom: 0;
+			input {
+				padding: 0;
+				height: 100%;
+				max-height: unset;
+			}
+		}
+		.v-text-field__details {
+			display: none;
+		}
+		
+	}
+	
+	.custom-checkbox {
+		z-index: 3;
+		box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
+		.solo-checkbox {
+			//border: 0.5px solid black;
+			margin-bottom: 6px;
+			margin-top: 6px;
+			padding: 0 16px;
+			min-height: 40px;
+			
+			.v-messages {
+				display:none
+			}
+			.v-input__control {
+				padding-top: 6px;
+			}
 		}
 	}
 	
-	.v-text-field__details {
-		display: none;
-	}
-	
 }
+
+
 </style>
