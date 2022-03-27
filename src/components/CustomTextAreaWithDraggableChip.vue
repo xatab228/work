@@ -36,6 +36,15 @@
 			>
 			</v-checkbox>
 		</div>
+		<v-combobox
+			:items="users"
+			item-text="name"
+			outlined
+			multiple
+			dense
+		>
+		
+		</v-combobox>
 	</div>
 </template>
 
@@ -92,11 +101,22 @@ export default {
 
 .custom-textarea-with-checkbox {
 	max-width: 50%;
+	min-height: 40px;
 	
 	.custom-textarea-with-chips {
 		display: flex;
 		flex-direction: column;
-		border: 1px solid black;
+		max-width: 100%;
+		height: auto;
+		border-color: rgba(0, 0, 0, 0.42);
+		border-style: solid;
+		border-width: thin;
+		border-radius: 4px;
+		
+		.v-text-field .v-input__control {
+			color: currentColor;
+			min-height: 40px;
+		}
 		
 		.v-text-field--outlined fieldset {
 			//border: 1px solid cyan;
@@ -110,8 +130,6 @@ export default {
 			margin-bottom: 0;
 			input {
 				padding: 0;
-				height: 100%;
-				max-height: unset;
 			}
 		}
 		.v-text-field__details {
@@ -123,12 +141,35 @@ export default {
 	.custom-checkbox {
 		z-index: 3;
 		box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
+		background: white;
+		margin-top: 0;
+		padding: 8px 0 8px 0;
+		transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+		max-height: 295px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		
 		.solo-checkbox {
 			//border: 0.5px solid black;
-			margin-bottom: 6px;
-			margin-top: 6px;
+			margin: 6px 0 6px 0;
 			padding: 0 16px;
 			min-height: 40px;
+			
+			.v-input--selection-controls__input {
+				margin-right: 30px;
+			}
+			.v-icon.v-icon--dense {
+				font-size: 24px;
+				color: rgba(0, 0, 0, 0.80);
+			}
+			
+			.theme--light.v-label {
+				font-family: "Roboto", sans-serif;
+				font-weight: 500;
+				line-height: 1rem;
+				font-size: 0.8125rem;
+				color: rgba(0, 0, 0, 0.87);
+			}
 			
 			.v-messages {
 				display:none
