@@ -8,22 +8,24 @@
 					v-for="(user,index) in selectCheckbox"
 					:key="index"
 					class="ml-2 mt-2"
+					small
 					close
 					@click:close="deleteUser(index)"
 				>
 					{{ user.name }}
 				</v-chip>
 			</draggable>
-			<v-text-field
-				v-model="searchUser"
-				dense
-				outlined
-				append-icon="mdi-menu-down"
-				@click:append="openCheckbox"
-			>
-			</v-text-field>
+<!--			<v-text-field-->
+<!--				v-model="searchUser"-->
+<!--				dense-->
+<!--				outlined-->
+<!--				append-icon="mdi-menu-down"-->
+<!--				@click:append="openCheckbox"-->
+<!--			>-->
+<!--			</v-text-field>-->
+			<input type="text" v-model="searchUser">
 		</div>
-		<div class="custom-checkbox" v-show="visibleCheckbox">
+		<div class="custom-checkbox" v-show="!visibleCheckbox">
 			<v-checkbox
 				v-model="selectCheckbox"
 				v-for="(user,index) in users"
@@ -33,6 +35,7 @@
 				dense
 				multiple
 				class="solo-checkbox"
+				:class="{'solo-checkbox--active': selectCheckbox.includes(user)}"
 			>
 			</v-checkbox>
 		</div>
@@ -100,12 +103,13 @@ export default {
 <style lang="scss">
 
 .custom-textarea-with-checkbox {
-	max-width: 50%;
+	max-width: 100%;
 	min-height: 40px;
+	width: 80%;
 	
 	.custom-textarea-with-chips {
 		display: flex;
-		flex-direction: column;
+		flex-wrap: wrap;
 		max-width: 100%;
 		height: auto;
 		border-color: rgba(0, 0, 0, 0.42);
@@ -114,7 +118,7 @@ export default {
 		border-radius: 4px;
 		
 		.v-text-field .v-input__control {
-			color: currentColor;
+			//color: currentColor;
 			min-height: 40px;
 		}
 		
@@ -126,8 +130,11 @@ export default {
 			//border: 1px solid cyan;
 			border: 0;
 		}
+		.v-input--dense > .v-input__control > .v-input__slot {
+			margin-bottom: 0
+		}
 		.v-input__slot {
-			margin-bottom: 0;
+			margin: 0;
 			input {
 				padding: 0;
 			}
@@ -151,16 +158,18 @@ export default {
 		
 		.solo-checkbox {
 			//border: 0.5px solid black;
-			margin: 6px 0 6px 0;
+			margin: 0;
 			padding: 0 16px;
+			position: relative;
+			//padding: 6px 16px 6px;
 			min-height: 40px;
 			
 			.v-input--selection-controls__input {
-				margin-right: 30px;
+				margin: 12px 32px 12px 0;
 			}
 			.v-icon.v-icon--dense {
 				font-size: 24px;
-				color: rgba(0, 0, 0, 0.80);
+				color: currentColor;
 			}
 			
 			.theme--light.v-label {
@@ -168,7 +177,7 @@ export default {
 				font-weight: 500;
 				line-height: 1rem;
 				font-size: 0.8125rem;
-				color: rgba(0, 0, 0, 0.87);
+				color: currentColor;
 			}
 			
 			.v-messages {
@@ -178,6 +187,29 @@ export default {
 				padding-top: 6px;
 			}
 		}
+		.solo-checkbox::before{
+			background-color: currentColor;
+			bottom: 0;
+			content: "";
+			left: 0;
+			opacity: 0;
+			pointer-events: none;
+			position: absolute;
+			right: 0;
+			top: 0;
+			transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+		}
+		.solo-checkbox::after {
+			content: "";
+			min-height: inherit;
+			font-size: 0;
+		}
+		.solo-checkbox:active::before{
+			opacity: 0.12;
+		}
+	}
+	.solo-checkbox--active{
+		background-color: rgba(25,118,210,0.16);
 	}
 	
 }
