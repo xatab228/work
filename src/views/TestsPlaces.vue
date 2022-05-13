@@ -44,6 +44,7 @@ export default {
   },
   created() {
     this.fetchData()
+	  this.$test({lol: "asdasdasdas"})
   }
 
 }
