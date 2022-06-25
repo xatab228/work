@@ -5,6 +5,7 @@
       <custom-text-area-with-draggable-chip/>
       <selected-sort :data="sortedData" :options="options" :select.sync="selectOption"/>
       {{selectOption}}
+	    <v-btn @click="openModal"> Open </v-btn>
     </div>
  </div>
 </template>
@@ -32,7 +33,10 @@ export default {
       } catch (e) {
         console.log(e)
       }
-    }
+    },
+		openModal(){
+			this.$openModalWindow({data: {a: '1231234'}})
+		}
   },
   computed: {
     sortedData() {
@@ -44,7 +48,6 @@ export default {
   },
   created() {
     this.fetchData()
-	  this.$test({lol: "asdasdasdas"})
   }
 
 }
