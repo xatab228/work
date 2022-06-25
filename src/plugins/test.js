@@ -1,15 +1,16 @@
 
 import vuetify from "@/plugins/vuetify";
-import ModalWindow from "@/components/ModalWindow";
+
 export default {
     install(Vue){
-        Vue.prototype.$openModalWindow = (data) => {
+        Vue.prototype.$openModalWindow = (data,src = 'ModalWindow') => {
         return new Promise(resolve => {
                 const props = {...data}
                 const on = {}
+                const AsyncComponent = () => import(`@/components/${src}`)
                 const component = new Vue({
                     vuetify,
-                    render: (h) => h(ModalWindow, {props,on})
+                    render: (h) => h(AsyncComponent, {props,on})
                 })
                 on.destroy = (data) => {
                     data ? resolve(data) : resolve();
